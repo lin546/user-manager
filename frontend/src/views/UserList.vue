@@ -12,101 +12,112 @@
         <el-table-column prop="email" label="邮箱" />
         <el-table-column label="操作">
           <template #default="scope">
-            <el-button @click="editUser(scope.row)" type="primary" size="small">编辑</el-button>
+            <el-button @click="openEditDialog(scope.row)" type="primary" size="small">编辑</el-button>
             <el-button @click="deleteUser(scope.row)" type="danger" size="small">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
+      <el-dialog v-model="editDialogVisible" 
+        title="编辑用户"
+        width="30%"
+        align-center
+      >
+        <el-form :model="currentUser" label-width="80px">
+          <el-form-item label="姓名">
+            <el-input v-model="currentUser.name"></el-input>
+          </el-form-item>
+          <el-form-item label="邮箱">
+            <el-input v-model="currentUser.email"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer">
+          <el-button @click="editDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="saveUser">保存</el-button>
+        </div>
+      </el-dialog>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import { ref, reactive, onMounted } from 'vue';
 import axios from 'axios';
-import { ElMessageBox, ElMessage } from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 export default {
-  data() {
-    return {
-      users: [{ id: 1, name: '测试用户1', email: 'test1@example.com' },
-          { id: 2, name: '测试用户2', email: 'test2@example.com' }],
-    };
-  },
-  methods: {
-    async fetchUsers() {
+  setup() {
+    const users = ref([
+      { id: 1, name: '测试用户1', email: 'test1@example.com' },
+      { id: 2, name: '测试用户2', email: 'test2@example.com' },
+    ]);
+    const editDialogVisible = ref(false);
+    const currentUser = reactive({});
+
+    const fetchUsers = async () => {
       try {
-        const response = await axios.get('/api/users'); // 调用后端接口
-        this.users = response.data.length > 0 ? response.data : [
+        const response = await axios.get('/api/users');
+        users.value = response.data.length > 0 ? response.data : [
           { id: 1, name: '测试用户1', email: 'test1@example.com' },
           { id: 2, name: '测试用户2', email: 'test2@example.com' },
-        ]; // 如果数据为空，添加测试数据
+        ];
       } catch (error) {
         console.error('获取用户数据失败:', error);
       }
-    },
-    async editUser(user) {
-      try {
-        const updatedUser = await ElMessageBox.prompt(
-          '请输入新的用户信息',
-          '编辑用户',
-          {
-            confirmButtonText: '保存',
-            cancelButtonText: '取消',
-            inputValue: JSON.stringify(user, null, 2),
-            inputType: 'textarea',
-          }
-        );
+    };
 
-        const parsedUser = JSON.parse(updatedUser.value);
-        await axios.put(`/api/users/${user.id}`, parsedUser);
+    const openEditDialog = (user) => {
+      Object.assign(currentUser, user); // 克隆用户数据
+      editDialogVisible.value = true;
+    };
+
+    const saveUser = async () => {
+      try {
+        await axios.put(`/api/users/${currentUser.id}`, currentUser);
         ElMessage.success('用户信息更新成功');
-        this.fetchUsers(); // 重新加载用户数据
+        editDialogVisible.value = false;
+        fetchUsers();
       } catch (error) {
-        if (error !== 'cancel') {
-          console.error('编辑用户失败:', error);
-          ElMessage.error('编辑用户失败');
-        }
+        console.error('编辑用户失败:', error);
+        ElMessage.error('编辑用户失败');
       }
-    },
-    async deleteUser(user) {
-      try {
-        await ElMessageBox.confirm(
-          `确定要删除用户 ${user.name} 吗？`,
-          '删除用户',
-          {
-            confirmButtonText: '删除',
-            cancelButtonText: '取消',
-            type: 'warning',
-          }
-        );
+    };
 
+    const deleteUser = async (user) => {
+      try {
         await axios.delete(`/api/users/${user.id}`);
         ElMessage.success('用户删除成功');
-        this.fetchUsers(); // 重新加载用户数据
+        fetchUsers();
       } catch (error) {
-        if (error !== 'cancel') {
-          console.error('删除用户失败:', error);
-          ElMessage.error('删除用户失败');
-        }
+        console.error('删除用户失败:', error);
+        ElMessage.error('删除用户失败');
       }
-    },
-  },
-  mounted() {
-    // this.fetchUsers(); // 组件加载时调用接口获取数据
+    };
+
+    onMounted(() => {
+      fetchUsers();
+    });
+
+    return {
+      users,
+      editDialogVisible,
+      currentUser,
+      fetchUsers,
+      openEditDialog,
+      saveUser,
+      deleteUser,
+    };
   },
 };
 </script>
 
 <style>
-/* 添加一些样式以适配 Element Plus */
 .table-container {
   display: flex;
-  justify-content: center; /* 水平居中 */
+  justify-content: center;
   margin-left: 20%;
   margin-right: 20%;
 }
 
-/* 新增用户入口样式 */
 .table-header {
   display: flex;
   justify-content: space-between;
@@ -114,8 +125,4 @@ export default {
   margin-bottom: 20px;
 }
 
-/* 标题样式 */
-.table-header h2 {
-  margin: 0;
-}
 </style>
