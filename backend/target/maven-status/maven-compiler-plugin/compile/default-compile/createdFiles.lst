@@ -1,0 +1,7 @@
+com/example/usermanager/config/WebConfig.class
+com/example/usermanager/controller/UserController.class
+com/example/usermanager/UserManagerApplication.class
+com/example/usermanager/mapper/UserMapper.class
+com/example/usermanager/service/UserService.class
+com/example/usermanager/service/impl/UserServiceImpl.class
+com/example/usermanager/entity/User.class
