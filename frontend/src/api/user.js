@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const api = axios.create({ baseURL: 'http://localhost:8080/api' })
+// Use relative API path; Vite dev server proxies /api to backend
+const api = axios.create({ baseURL: '/api' })
 
 export function fetchUsers() {
   return api.get('/users')
