@@ -37,25 +37,23 @@
 
 <script>
 import { ref, reactive, onMounted } from 'vue';
-import axios from 'axios';
 import { ElMessage } from 'element-plus';
+import { fetchUsers, updateUser, deleteUser } from '../api/user';
 
 export default {
   setup() {
-    const users = ref([
+    const placeholderUsers = [
       { id: 1, name: '测试用户1', email: 'test1@example.com' },
       { id: 2, name: '测试用户2', email: 'test2@example.com' },
-    ]);
+    ];
+    const users = ref(placeholderUsers);
     const editDialogVisible = ref(false);
     const currentUser = reactive({});
 
-    const fetchUsers = async () => {
+    const loadUsers = async () => {
       try {
-        const response = await axios.get('/api/users');
-        users.value = response.data.length > 0 ? response.data : [
-          { id: 1, name: '测试用户1', email: 'test1@example.com' },
-          { id: 2, name: '测试用户2', email: 'test2@example.com' },
-        ];
+        const response = await fetchUsers();
+        users.value = response.data.length > 0 ? response.data : placeholderUsers;
       } catch (error) {
         console.error('获取用户数据失败:', error);
       }
@@ -68,21 +66,21 @@ export default {
 
     const saveUser = async () => {
       try {
-        await axios.put(`/api/users/${currentUser.id}`, currentUser);
+        await updateUser(currentUser.id, currentUser);
         ElMessage.success('用户信息更新成功');
         editDialogVisible.value = false;
-        fetchUsers();
+        loadUsers();
       } catch (error) {
         console.error('编辑用户失败:', error);
         ElMessage.error('编辑用户失败');
       }
     };
 
-    const deleteUser = async (user) => {
+    const removeUser = async (user) => {
       try {
-        await axios.delete(`/api/users/${user.id}`);
+        await deleteUser(user.id);
         ElMessage.success('用户删除成功');
-        fetchUsers();
+        loadUsers();
       } catch (error) {
         console.error('删除用户失败:', error);
         ElMessage.error('删除用户失败');
@@ -90,17 +88,16 @@ export default {
     };
 
     onMounted(() => {
-      fetchUsers();
+      loadUsers();
     });
 
     return {
       users,
       editDialogVisible,
       currentUser,
-      fetchUsers,
       openEditDialog,
       saveUser,
-      deleteUser,
+      deleteUser: removeUser,
     };
   },
 };
