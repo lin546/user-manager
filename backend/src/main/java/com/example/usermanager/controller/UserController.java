@@ -45,7 +45,8 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        boolean ok = userService.delete(id);
+        boolean ok = false;
+        //TODO 调用 service 完成删除
         if (!ok) return ResponseEntity.notFound().build();
         return ResponseEntity.ok().build();
     }

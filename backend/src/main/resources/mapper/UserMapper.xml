@@ -27,7 +27,7 @@
     </update>
 
     <delete id="delete" parameterType="long">
-        DELETE FROM users WHERE id = #{id}
+        <!-- TODO: 补全 findAll/findById/insert/update/delete 的 SQL -->
     </delete>
 
 </mapper>

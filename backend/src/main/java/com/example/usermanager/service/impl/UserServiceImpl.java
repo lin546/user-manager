@@ -39,7 +39,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean delete(Long id) {
-        int rows = userMapper.delete(id);
+        int rows = 0;
+        //TODO 调用对应 mapper 完成删除
         return rows > 0;
     }
 }

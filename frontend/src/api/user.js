@@ -4,7 +4,7 @@ import axios from 'axios'
 const api = axios.create({ baseURL: '/api' })
 
 export function fetchUsers() {
-  return api.get('/users')
+  //TODO 实现调用接口，返回用户列表
 }
 
 export function fetchUser(id) {
