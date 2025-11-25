@@ -2,9 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import UserList from '../views/UserList.vue'
 import UserForm from '../views/UserForm.vue'
 
+// TODO:新增“创建新用户页面”路由
 const routes = [
   { path: '/', component: UserList },
-  { path: '/create', component: UserForm },
   { path: '/edit/:id', component: UserForm, props: true }
 ]
 

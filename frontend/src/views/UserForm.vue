@@ -1,6 +1,5 @@
 <template>
-  
-  <h2 class="form-title">{{ isEdit ? '编辑用户' : '创建用户' }}</h2>
+  <h2 class="form-title">创建用户</h2>
     <el-form :model="user" label-width="80px" @submit.prevent="submit" class="form-content">
       <el-form-item label="姓名">
         <el-input v-model="user.name" required></el-input>
@@ -8,6 +7,7 @@
       <el-form-item label="邮箱">
         <el-input v-model="user.email" required></el-input>
       </el-form-item>
+      <!--TODO:新增标签tag输入框-->
       <el-form-item>
         <el-button type="primary" @click="submit">保存</el-button>
         <router-link to="/">
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { reactive, computed, onMounted } from 'vue';
+import { reactive, onMounted } from 'vue';
 import { fetchUser, createUser, updateUser } from '../api/user';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -27,8 +27,7 @@ export default {
     const route = useRoute();
     const router = useRouter();
 
-    const user = reactive({ name: '', email: '' });
-    const isEdit = computed(() => !!route.params.id);
+    const user = reactive({ name: '', email: '' ,tag: ''});
 
     const fetchUserData = async () => {
       const id = route.params.id;
@@ -55,14 +54,11 @@ export default {
         alert(id ? '更新失败' : '创建失败');
       }
     };
-
     onMounted(() => {
       fetchUserData();
     });
-
     return {
       user,
-      isEdit,
       submit,
     };
   },
