@@ -40,7 +40,3 @@ npm run dev
 - 后端主要代码在 `backend/src/main/java/com/example/usermanager`。
 - MyBatis 映射文件在 `backend/src/main/resources/mapper`。
 
-如需我现在帮你：
-- 运行一次本地 smoke 测试，或
-- 把项目打包并运行，或
-- 在你的本地打开该文件夹（如果你愿意），请告诉我。
