@@ -18,11 +18,6 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping
-//    public List<User> list() {
-//        return userService.findAll();
-//    }
-
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(@PathVariable Long id) {
         User u = userService.findById(id);
@@ -30,10 +25,10 @@ public class UserController {
         return ResponseEntity.ok(u);
     }
 
+    // TODO：完成新增用户接口
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
-        userService.create(user);
-        return ResponseEntity.ok(user);
+        return null;
     }
 
     @PutMapping("/{id}")
@@ -51,16 +46,7 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-//    @GetMapping
-//public List<User> list(@RequestParam(required=false) String keyword,
-//                       @RequestParam(required=false) String tag) {
-//    if ((keyword != null && !keyword.isEmpty()) || (tag != null && !tag.isEmpty())) {
-//        return userService.search(keyword, tag);
-//    }
-//    return userService.findAll();
-//}
 
-    // TODO：新增查询和更新
      @GetMapping
      public List<User> list(@RequestParam(required=false) String keyword,
                          @RequestParam(required=false) String tag) {
@@ -69,6 +55,7 @@ public class UserController {
          }
          return userService.findAll();
      }
+
      @PutMapping("/{id}/tags")
      public ResponseEntity<Void> updateTags(@PathVariable Long id, @RequestBody Map<String, Object> body) {
          String tags = (String) body.get("tags"); // 逗号分隔字符串

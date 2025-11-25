@@ -27,11 +27,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void create(User user) {
-        userMapper.insert(user);
-    }
-
-    @Override
     public boolean update(User user) {
         int rows = userMapper.update(user);
         return rows > 0;
@@ -53,4 +48,6 @@ public class UserServiceImpl implements UserService {
         int rows = userMapper.updateTags(id, tags);
         return rows > 0;
     }
+
+    // TODO：完成新增用户接口
 }

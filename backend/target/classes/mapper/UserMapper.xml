@@ -8,31 +8,27 @@
         <id property="id" column="id" />
         <result property="name" column="name" />
         <result property="email" column="email" />
-        <!-- TODO：曾加 tags 字段 -->
+
         <result property="tags" column="tags" />
     </resultMap>
 
     <select id="findAll" resultMap="UserResultMap">
-        SELECT id, name, email, tags FROM users ORDER BY id DESC <!-- TODO：曾加 tags 字段 -->
+        SELECT id, name, email, tags FROM users ORDER BY id DESC
     </select>
 
     <select id="findById" parameterType="long" resultMap="UserResultMap">
-        SELECT id, name, email, tags FROM users WHERE id = #{id} <!-- TODO：曾加 tags 字段 -->
+        SELECT id, name, email, tags FROM users WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.example.usermanager.entity.User" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO users (name, email, tags) VALUES (#{name}, #{email}, #{tags}) <!-- TODO：曾加 tags 字段 -->
-    </insert>
-
     <update id="update" parameterType="com.example.usermanager.entity.User">
-        UPDATE users SET name = #{name}, email = #{email}, tags = #{tags} WHERE id = #{id} <!-- TODO：曾加 tags 字段 -->
+        UPDATE users SET name = #{name}, email = #{email}, tags = #{tags} WHERE id = #{id}
     </update>
 
     <delete id="delete" parameterType="long">
         DELETE FROM users WHERE id = #{id}
     </delete>
 
-    <!-- TODO：新增查询和更新 -->
+
     <select id="search" resultMap="UserResultMap">
         SELECT * FROM users
         <where>
@@ -48,4 +44,6 @@
     <update id="updateTags" parameterType="com.example.usermanager.entity.User">
         UPDATE users SET tags = #{tags} WHERE id = #{id}
     </update>
+
+    <!--TODO：完成新增用户接口> -->
 </mapper>

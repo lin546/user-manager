@@ -1,5 +1,19 @@
+# 忽略 IDE 配置文件
 /.idea/
-backend/target/
-/frontend/node_modules/
 /backend/.idea/
+
+# 忽略编译生成的文件
 /backend/target/
+
+# 忽略 Node.js 依赖
+/frontend/node_modules/
+
+# 忽略日志文件
+*.log
+
+# 忽略临时文件
+*.tmp
+*.swp
+
+# 忽略环境变量配置文件
+.env

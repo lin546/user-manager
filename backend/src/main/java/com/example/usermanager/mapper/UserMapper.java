@@ -12,15 +12,13 @@ public interface UserMapper {
 
     User findById(@Param("id") Long id);
 
-    int insert(User user);
-
     int update(User user);
 
     int delete(@Param("id") Long id);
 
-    // TODO：新增查询和更新
      List<User> search(@Param("keyword") String keyword, @Param("tag") String tag);
     
      int updateTags(@Param("id") Long id, @Param("tags") String tags);
 
+    // TODO：完成新增用户接口
 }
