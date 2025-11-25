@@ -1,0 +1,40 @@
+0 verbose cli /usr/local/bin/node /usr/local/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@10.9.3
+2 info using node@v22.19.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/zhangzhuang/IdeaProjects/skill-competition/user-manager/frontend/.npmrc
+5 silly config load:file:/Users/zhangzhuang/.npmrc
+6 silly config load:file:/usr/local/etc/npmrc
+7 verbose title npm exec npm@9 install
+8 verbose argv "exec" "--" "npm@9" "install"
+9 verbose logfile logs-max:10 dir:/Users/zhangzhuang/IdeaProjects/skill-competition/user-manager/frontend/.npm-cache/_logs/2025-11-21T10_36_29_339Z-
+10 verbose logfile /Users/zhangzhuang/IdeaProjects/skill-competition/user-manager/frontend/.npm-cache/_logs/2025-11-21T10_36_29_339Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 http fetch GET https://registry.npmjs.org/npm attempt 1 failed with ENOTFOUND
+14 http fetch GET https://registry.npmjs.org/npm attempt 2 failed with ENOTFOUND
+15 http fetch GET https://registry.npmjs.org/npm attempt 3 failed with ENOTFOUND
+16 verbose type system
+17 verbose stack FetchError: request to https://registry.npmjs.org/npm failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+17 verbose stack     at ClientRequest.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/minipass-fetch/lib/index.js:130:14)
+17 verbose stack     at ClientRequest.emit (node:events:519:28)
+17 verbose stack     at emitErrorEvent (node:_http_client:105:11)
+17 verbose stack     at _destroy (node:_http_client:898:9)
+17 verbose stack     at onSocketNT (node:_http_client:918:5)
+17 verbose stack     at process.processTicksAndRejections (node:internal/process/task_queues:91:21)
+18 error code ENOTFOUND
+19 error syscall getaddrinfo
+20 error errno ENOTFOUND
+21 error network request to https://registry.npmjs.org/npm failed, reason: getaddrinfo ENOTFOUND registry.npmjs.org
+22 error network This is a problem related to network connectivity.
+22 error network In most cases you are behind a proxy or have bad network settings.
+22 error network
+22 error network If you are behind a proxy, please make sure that the
+22 error network 'proxy' config is set properly.  See: 'npm help config'
+23 verbose cwd /Users/zhangzhuang/IdeaProjects/skill-competition/user-manager/frontend
+24 verbose os Darwin 25.1.0
+25 verbose node v22.19.0
+26 verbose npm  v10.9.3
+27 verbose exit 1
+28 verbose code 1
+29 error A complete log of this run can be found in: /Users/zhangzhuang/IdeaProjects/skill-competition/user-manager/frontend/.npm-cache/_logs/2025-11-21T10_36_29_339Z-debug-0.log

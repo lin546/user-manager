@@ -17,4 +17,10 @@ public interface UserMapper {
     int update(User user);
 
     int delete(@Param("id") Long id);
+
+    // TODO：新增查询和更新
+     List<User> search(@Param("keyword") String keyword, @Param("tag") String tag);
+    
+     int updateTags(@Param("id") Long id, @Param("tags") String tags);
+
 }

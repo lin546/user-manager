@@ -42,4 +42,15 @@ public class UserServiceImpl implements UserService {
         int rows = userMapper.delete(id);
         return rows > 0;
     }
+
+    @Override
+    public List<User> search(String keyword, String tag) {
+        return userMapper.search(keyword, tag);
+    }
+
+    @Override
+    public boolean updateTags(Long id, String tags) {
+        int rows = userMapper.updateTags(id, tags);
+        return rows > 0;
+    }
 }

@@ -10,3 +10,6 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com'), ('Bob', 'bob@example.com');
+
+-- TODO
+-- ALTER TABLE user ADD COLUMN tags VARCHAR(255) DEFAULT NULL;
