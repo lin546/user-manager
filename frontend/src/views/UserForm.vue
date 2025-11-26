@@ -1,6 +1,6 @@
 <template>
   
-  <h2 class="form-title">{{ isEdit ? '编辑用户' : '创建用户' }}</h2>
+  <h2 class="form-title">创建用户</h2>
     <el-form :model="user" label-width="80px" @submit.prevent="submit" class="form-content">
       <el-form-item label="姓名">
         <el-input v-model="user.name" required></el-input>
@@ -28,7 +28,6 @@ export default {
     const router = useRouter();
 
     const user = reactive({ name: '', email: '' });
-    const isEdit = computed(() => !!route.params.id);
 
     const fetchUserData = async () => {
       const id = route.params.id;
@@ -62,7 +61,6 @@ export default {
 
     return {
       user,
-      isEdit,
       submit,
     };
   },
