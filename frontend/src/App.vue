@@ -11,7 +11,7 @@
         <el-menu-item index="0">
           <!-- <img
             style="width: 100px"
-            src="src/assets/images/user-manager-logo.svg" 
+            src="src/assets/images/user-manager-logo.svg"
             alt="User Manager Logo"
           /> -->
         </el-menu-item>
@@ -21,13 +21,13 @@
     </el-header>
     <el-main class="app-main">
       <el-row>
-        <el-col :span="7">
+        <el-col :span="6">
           <div class="grid-content ep-bg-purple" />
         </el-col>
-        <el-col :span="10">
+        <el-col :span="12">
         <router-view />
         </el-col>
-        <el-col :span="7">
+        <el-col :span="6">
           <div class="grid-content ep-bg-purple" />
         </el-col>
       </el-row>
