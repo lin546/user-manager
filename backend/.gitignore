@@ -1,0 +1,45 @@
+# Java related files
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.hprof
+*.project
+*.classpath
+*.settings/
+*.factorypath
+
+# Maven specific files
+target/
+*.mvn/
+
+# Node.js related files
+node_modules/
+*.log
+
+# IDE specific files
+.idea/
+*.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*.bak
+*.orig
+*.rej
+
+# Application specific files
+mall-end/src/main/resources/application.yml
+mall-end/src/main/resources/application-dev.yml
+mall-end/src/main/resources/application-prod.yml
+mall-front/dist/
+mall-front/public/
