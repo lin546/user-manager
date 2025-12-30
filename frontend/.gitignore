@@ -1,6 +1,7 @@
 # Node.js related files
-node_modules/
+.npm-cache/
 *.log
+node_modules/
 
 # Build output
 dist/
